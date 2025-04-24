@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.test-text {
+  @apply text-3xl text-red-500 font-bold;
+}
+html {
+  transition: background-color 0.3s, color 0.3s;
+}
