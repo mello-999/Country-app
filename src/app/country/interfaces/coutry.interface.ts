@@ -1,9 +1,9 @@
 export interface country {
   cca2: string;
   flag: string;
-  flagsvg: string;
-  Name: string;
-  Capital: string;
+  flagSvg: string;
+  name: string;
+  capital: string;
   population: number;
 }
 

@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
-import { RESTCountry } from '../../interfaces/rest.countries.interfaces';
+import { country } from '../../interfaces/coutry.interface';
+
 
 @Component({
   selector: 'country-list',
@@ -7,8 +8,8 @@ import { RESTCountry } from '../../interfaces/rest.countries.interfaces';
   templateUrl: './country-list.component.html',
 })
 export class CountryListComponent {
-  countries = input.required<RESTCountry[]>()
-
-
-
+  countries = input.required<country[]>()
 }
+
+
+
