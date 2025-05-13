@@ -32,13 +32,24 @@ export class ByCapitalPageComponent {
      this.isError.set(null);
 
      this.CountryService.searchBycapital(query)
-     .subscribe((countries) => {
-        this.isLoading.set(false);
-        this.countries.set(countries);
-      });
+     .subscribe({
+      next: (countries) => {
 
-    }
+          this.isLoading.set(false);
+          this.countries.set(countries);
+
+      },
+      error: (err) => {
+
+        this.isLoading.set(false);
+        this.countries.set([]);
+        this.isError.set(err);
+      },
+    });
   }
+
+}
+
 
 
 
