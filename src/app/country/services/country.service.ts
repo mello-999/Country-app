@@ -27,10 +27,30 @@ export class CountryService {
           catchError(error=>{
             console.log('Error fetching ', error);
 
-            return throwError(() => new Error(`No se pudo obtenenr paises con ese query ${ query }`))
+            return throwError(() => new Error(`No se pudo obtenenr capital con ese nombre ${ query }`))
           })
          );
   }
+
+
+searchBycountry(query: string) {
+  const url = `${API_URL}/name/${query}`;
+
+  query = query.toLowerCase();
+
+  return this.http
+       .get<RESTCountry[]>(url)
+       .pipe(
+        map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+        catchError(error=>{
+          console.log('Error fetching ', error);
+
+          return throwError(() => new Error(`No se pudo obtenenr paises con ese nombre ${ query }`))
+        })
+       );
+}
+
+
 
 }
 
