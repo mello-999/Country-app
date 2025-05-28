@@ -37,12 +37,45 @@
                 class="link-primary cursor-pointer">Mas información</a>
           </td>
         </tr>
+
+
       }
+
+     @if (errorMessage()) {
+      <tr>
+        <td colspam="8" class="text-center">
+             {{ errorMessage() }}
+        </td>
+      </tr>
+
+     }
+
+     @if(countries().length == 0 && !isLoading() ) {
+       <tr>
+         <td colspam="8" class="text-center"> no se encontraron resultados </td>
+       </tr>
+      }
+
+      @if (isLoading()) {
+          <tr>
+              <td colspam="8" class="text-center">
+                Buscando paises
+              </td>
+         </tr>
+       }
+
+
+
       </tbody>
     </table>
           <section class="mt-5 bg-warning">
      </section>
    </section>
 </section>
+
+
+
+
+
 
 
