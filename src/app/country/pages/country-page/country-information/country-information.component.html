@@ -1,0 +1,39 @@
+<!-- <section class="mx-10">
+<h1 class="text-3xl"> {{ country().name }}</h1>
+<h1 class="text-xl font-thin">
+  Población {{ country().population | number }}</h1>
+</section>
+
+-->
+
+
+<section class="mx-10 my-8 p-6 bg-base-100 rounded-xl shadow-md border border-base-200">
+  <h1 class="text-3xl font-bold text-primary mb-2">
+    {{ country().name }}
+  </h1>
+  <h2 class="text-lg text-base-content font-light">
+    Población: {{ country().population | number }}
+  </h2>
+</section>
+
+
+
+<div class="stats shadow">
+  <div class="stat place-items-center">
+    <div class="stat-title">Población</div>
+    <div class="stat-value">{{ country().population | number }}</div>
+    <div class="stat-desc">{{ currentYear() }}</div>
+  </div>
+
+  <div class="stat place-items-center">
+    <div class="stat-title">Users</div>
+    <div class="stat-value text-secondary">4,200</div>
+    <div class="stat-desc text-secondary">↗︎ 40 (2%)</div>
+  </div>
+
+  <div class="stat place-items-center">
+    <div class="stat-title">New Registers</div>
+    <div class="stat-value">1,200</div>
+    <div class="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+</div>

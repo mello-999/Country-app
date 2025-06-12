@@ -1,11 +1,14 @@
 @if( countryResource.error() ) {
   <app-not-found />
 }
+     <!-- //Esto va a aprecer cuando mi pagina este cargando     -> -->
 
+@if (countryResource.isLoading())  {
+<h1 class="text-3xl">Cargando ...</h1>
+}
 
 
 @if( countryResource.hasValue ()) {
-  <h3>Nombre: {{ countryResource.value()!.name }}</h3>
-
+<country-information-page [country]="countryResource.value()!" />
 }
 
