@@ -12,7 +12,10 @@ import type{ RESTCountry } from "../interfaces/rest.countries.interfaces";
       flag: restCountry.flag,
       flagSvg: restCountry.flags.svg,
       name: restCountry.translations['spa'].common ?? 'No spanish Name',
-      population: restCountry.population
+      population: restCountry.population,
+
+      region: restCountry.region,
+      subRegion: restCountry.subregion,
     };
   }
 
