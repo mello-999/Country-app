@@ -28,6 +28,7 @@ export class ByCapitalPageComponent {
      request: () => ({ query: this.query() }),
      loader: ({ request }) => {
        if ( !request.query ) return of([]);
+
        return this.CountryService.searchBycapital(request.query);
       },
    });

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, } from '@angular/core';
 
 import { RESTCountry } from '../interfaces/rest.countries.interfaces';
-import { map, Observable, catchError, throwError, delay } from 'rxjs';
+import { map, Observable, catchError, throwError, delay, of } from 'rxjs';
 import { country } from '../interfaces/coutry.interface';
 import { CountryMapper } from '../mappers/country.mapper';
 
@@ -19,6 +19,8 @@ export class CountryService {
 
   searchBycapital(query: string): Observable<country[]> {
     query = query.toLowerCase();
+
+
 
     return this.http
          .get<RESTCountry[]>(`${API_URL}/capital/${ query }`)
