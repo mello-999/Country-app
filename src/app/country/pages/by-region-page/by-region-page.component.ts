@@ -1,10 +1,44 @@
-import { Component } from '@angular/core';
-import { SearchInputComponent } from "../../components/search-input/search-input.component";
+import { Component, inject, signal } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { of } from 'rxjs';
+
 import { CountryListComponent } from "../../components/country-list/country-list.component";
+import { Region } from '../../interfaces/region.type';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'by-region-page',
   imports: [CountryListComponent],
   templateUrl: './by-region-page.component.html',
 })
-export class ByRegionPageComponent { }
+export class ByRegionPageComponent {
+
+  CountryService = inject(CountryService)
+
+    public regions: Region[] = [
+    'Africa',
+    'Americas',
+    'Asia',
+    'Europe',
+    'Oceania',
+    'Antarctic',
+  ];
+
+  selectedRegion = signal<Region | null>(null);
+
+  countryResource = rxResource({
+    request: () => ({ region: this.selectedRegion() }),
+    loader: ({ request }) => {
+      if ( !request.region ) return of([]);
+
+
+      return this.CountryService.searchByRegion(request.region);
+     },
+  });
+
+
+  }
+
+
+
+

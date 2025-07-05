@@ -5,6 +5,7 @@ import { RESTCountry } from '../interfaces/rest.countries.interfaces';
 import { map, Observable, catchError, throwError, delay, of, tap } from 'rxjs';
 import { country } from '../interfaces/coutry.interface';
 import { CountryMapper } from '../mappers/country.mapper';
+import { Region } from '../interfaces/region.type';
 
 
 
@@ -19,6 +20,7 @@ export class CountryService {
 
   private queryCacheCapital = new Map<string, country[]>();
   private queryCacheCountry = new Map<string, country[]>();
+  private queryCacheRegion = new Map<Region, country[]>();
 
 
 
@@ -68,6 +70,32 @@ searchBycountry(query: string) {
         })
        );
 }
+
+
+searchByRegion(region: Region) {
+   const url = `${API_URL}/region/${region}`;
+
+
+  if (this.queryCacheCountry.has(region) ) {
+    return of(this.queryCacheCountry.get(region) ?? []);
+  }
+
+
+
+  return this.http.get<RESTCountry[]>(url).pipe(
+        map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+        tap(countries => this.queryCacheRegion.set(region, countries)),
+        catchError(error=>{
+          console.log('Error fetching ', error);
+
+          return throwError(
+            () => new Error(`No se pudo obtenenr paises con ese nombre ${region}`))
+        })
+       );
+}
+
+
+
 
 searchCountryByAlphaCode(code: string) {
   const url = `${API_URL}/alpha/${code}`;
