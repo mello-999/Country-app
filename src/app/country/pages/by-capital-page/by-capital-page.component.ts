@@ -38,7 +38,7 @@ export class ByCapitalPageComponent {
         queryParams: {
           query: request.query,
         },
-       })
+       });
 
        return this.CountryService.searchBycapital(request.query);
       },
